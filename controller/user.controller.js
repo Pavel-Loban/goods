@@ -17,7 +17,7 @@ class GoodsController {
     async getOneGood(req, res){
         const id = req.params.id
         const good = await db.query(`SELECT * FROM good WHERE id=$1`, [id])
-        res.json(good.rows[0])
+        res.json(good.rows[0]);
 
     }
 
