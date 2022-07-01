@@ -23,7 +23,7 @@ class GoodsController {
 
     async updateGood(req, res){
         const { title, img_src, price, more_image,id} = req.body
-        const good = await db.query(`UPDATE good SET title= $1, img_src=$2 price=$3 more_image=$4 WHERE id = $5 RETURNING *`, [title, img_src, price, more_image, id])
+        const good = await db.query(`UPDATE good SET title= $1, img_src=$2, price=$3, more_image=$4 WHERE id = $5 RETURNING *`, [title, img_src, price, more_image, id])
         res.json(good.rows[0])
 
     }
