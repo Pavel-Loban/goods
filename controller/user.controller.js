@@ -35,5 +35,5 @@ class GoodsController {
     }
 }
 
-module.exports = new GoodsController()
+module.exports = new GoodsController();
 
