@@ -2,9 +2,9 @@ const Router = require('express')
 const router = new Router
 const PostController  = require('../controller/post.controller')
 
-router.post('/post', PostController.createPost)
-router.get('/post', PostController.getPostsByUser)
-
+router.post('/messages', PostController.createPost)
+router.get('/messages', PostController.getPostsByUser)
+router.get('/messages/:id', PostController.getOnePost)
 
 module.exports = router
 

@@ -2,16 +2,22 @@ const db = require('../db');
 class PostController{
 
     async createPost(req, res){
-        const {title, content, user_id} = req.body;
-        const newPost = await db.query(`INSERT INTO post (title, content, user_id) VALUES ($1, $2, $3) RETURNING *`, [title,content, user_id])
-        res.json(newPost.rows[0])
+        const {selector1, selector2, countId, timemessage, datemessage} = req.body;
+        const newMessage = await db.query(`INSERT INTO messages (selector1, selector2, countId, timemessage, datemessage) VALUES ($1, $2, $3, $4, $5) RETURNING *`, [selector1, selector2, countId, timemessage, datemessage])
+        res.json(newMessage.rows[0])
 
     }
 
     async getPostsByUser (req, res){
-        const {id} = req.query;
-        const getPosts = await db.query(`SELECT title, content FROM post WHERE user_id=$1`, [id])
+        // const {id} = req.query;
+        const getPosts = await db.query(`SELECT * FROM messages`)
         res.json(getPosts.rows);
+    }
+
+    async getOnePost(req, res){
+        const id = req.params.id
+        const messages = await db.query(`SELECT * FROM messages WHERE id=$1`, [id])
+        res.json(messages.rows[0])
 
     }
 
