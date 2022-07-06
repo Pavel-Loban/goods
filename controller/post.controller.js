@@ -2,8 +2,8 @@ const db = require('../db');
 class PostController{
 
     async createPost(req, res){
-        const {selector1, selector2, countId, timemessage, datemessage} = req.body;
-        const newMessage = await db.query(`INSERT INTO messages (selector1, selector2, countId, timemessage, datemessage) VALUES ($1, $2, $3, $4, $5) RETURNING *`, [selector1, selector2, countId, timemessage, datemessage])
+        const {selector1, selector2, countid, timemessage, datemessage} = req.body;
+        const newMessage = await db.query(`INSERT INTO messages (selector1, selector2, countid, timemessage, datemessage) VALUES ($1, $2, $3, $4, $5) RETURNING *`, [selector1, selector2, countid, timemessage, datemessage])
         res.json(newMessage.rows[0])
 
     }
@@ -19,6 +19,12 @@ class PostController{
         const messages = await db.query(`SELECT * FROM messages WHERE id=$1`, [id])
         res.json(messages.rows[0])
 
+    }
+
+    async deleteMessage(req, res){
+        const id = req.params.id
+        const message = await db.query(`DELETE FROM messages WHERE id=$1`, [id])
+        res.json(message.rows[0])
     }
 
 }

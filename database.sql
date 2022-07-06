@@ -11,7 +11,7 @@ CREATE TABLE messages(
 
         selector1 VARCHAR(255),
         selector2 VARCHAR(255),
-        countId INTEGER,
+        countid INTEGER,
 
     timemessage VARCHAR(255),
     datemessage VARCHAR(255)
